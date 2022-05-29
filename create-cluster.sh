@@ -14,9 +14,19 @@ gcloud beta container clusters create $CLUSTER_NAME \
   --enable-autoscaling \
   --min-nodes=1 \
   --max-nodes=3 \
-  --num-nodes=1 \
-  --enable-autorepair \
+  --num-nodes=1 
   --preemptible
+
+# echo "-Node pools-"
+# gcloud beta container node-pools create node-pool-1 \
+#   --cluster=$CLUSTER_NAME \
+#   --machine-type=n2d-highmem-4 \
+#   --preemptible \
+#   --min-nodes=1 \
+#   --max-nodes=3 \
+#   --num-nodes=1 \
+#   --enable-autoscaling \
+#   --enable-autorepair \
 
 echo "-Check that the cluster is up and running-"
 gcloud container clusters list
