@@ -68,11 +68,13 @@ resource "kubernetes_deployment" "image_classifier" {
             }
           }
 
+          # machine type = n2d-highmem-4 (4 vCPUs, 32GB RAM)
           resources {
             requests = {
               cpu = "3"
 
-              memory = "4Gi"
+              # memory = "4Gi"
+              memory = "8Gi"
             }
           }
 
