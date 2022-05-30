@@ -10,14 +10,14 @@ CLUSTER_NAME=chatbot-cluster
 echo "-Creating a Kubernetes cluster with 3 nodes in the default node pool-"
 gcloud beta container clusters create $CLUSTER_NAME \
   --cluster-version=latest \
-  --machine-type=n2d-highmem-4 \
+  --machine-type=n2d-highmem-8 \
   --enable-autoscaling \
+  --enable-autorepair \
   --min-nodes=1 \
   --max-nodes=3 \
-  --num-nodes=1 
+  --num-nodes=1 \
   --preemptible
 
-# echo "-Node pools-"
 # gcloud beta container node-pools create node-pool-1 \
 #   --cluster=$CLUSTER_NAME \
 #   --machine-type=n2d-highmem-4 \
