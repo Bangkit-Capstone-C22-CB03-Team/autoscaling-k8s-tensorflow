@@ -47,6 +47,7 @@ resource "kubernetes_deployment" "image_classifier" {
       spec {
         container {
           name  = "tf-serving"
+          # pake container registry jgn artifact registry biar lebih public & bisa di pull
           image = "tensorflow/serving"
           args  = ["--model_name=$(MODEL_NAME)", "--model_base_path=$(MODEL_PATH)"]
 
@@ -70,11 +71,15 @@ resource "kubernetes_deployment" "image_classifier" {
 
           # machine type = n2d-highmem-4 (4 vCPUs, 32GB RAM)
           resources {
+            # limits = {
+            #   cpu = "3"
+
+            #   memory = "8Gi"
+            # }
             requests = {
               cpu = "3"
 
-              # memory = "4Gi"
-              memory = "8Gi"
+              memory = "4Gi"
             }
           }
 
