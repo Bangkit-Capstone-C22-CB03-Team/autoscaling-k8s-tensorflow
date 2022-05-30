@@ -2,11 +2,15 @@ kubectl get svc
 EXTERNAL_IP=34.66.250.249
 echo "-Install specific locust version-"
 pip3 install locust==1.4.1
+export PATH=~/.local/bin:$PATH
 echo "Verify that the model is up and operational."
 curl -d @locust/request-body.json -X POST http://$EXTERNAL_IP:8501/v1/models/image_classifier:predict
 
 echo "Configure Horizontal Pod Autoscaler."
-kubectl autoscale deployment image-classifier --cpu-percent=60 --min=1 --max=4
+kubectl autoscale deployment image-classifier \
+--cpu-percent=60 \
+--min=1 \
+--max=4 
 
 echo "Check the status of the autoscaler."
 kubectl get hpa
